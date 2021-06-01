@@ -1,0 +1,63 @@
+.lowerSection .finishMessageBox {
+  max-width: 712px;
+  height: 378px;
+  background: #ffffff;
+  box-shadow: 0px 15px 30px rgba(40, 59, 91, 0.1);
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+.lowerSection .finishMessageBox img {
+  width: 107px;
+  height: 107px;
+}
+.greetHeading {
+  color: #0e243a;
+}
+.lowerSection .finishMessageBox .greetingPara {
+  margin: 14px 0px;
+  width: 60%;
+  text-align: center;
+  line-height: 24px;
+  opacity: 0.8;
+}
+.lowerSection .finishMessageBox .greetingSecText {
+  margin: 0;
+  /* margin-top: 14px; */
+  color: #505050;
+}
+.lowerSection .finishMessageBox .letStartBtn {
+  width: 264px;
+  height: 44px;
+  border: none;
+  background: #0071bc;
+  box-shadow: 0px 8px 20px rgba(0, 82, 137, 0.2);
+  border-radius: 3px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  outline: none;
+  margin-top: 18px;
+}
+@media screen and (max-width: 600px) {
+  .lowerSection .finishMessageBox {
+    width: 95%;
+    height: 396px;
+    background: #ffffff;
+    box-shadow: 0px 15px 30px rgba(40, 59, 91, 0.1);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .lowerSection .finishMessageBox p {
+    margin: 14px 0px;
+    width: 85%;
+    text-align: center;
+  }
+}

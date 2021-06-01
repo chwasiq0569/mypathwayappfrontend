@@ -1,0 +1,60 @@
+.btnsContainerWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.stepContainer {
+  overflow-x: hidden;
+}
+.btnsContainerWrapper .actionBtns {
+  width: 424px;
+  display: flex;
+  justify-content: center;
+  margin-top: 52px;
+  align-items: center;
+}
+
+.btnsContainerWrapper .actionBtns .prevBtn,
+.btnsContainerWrapper .actionBtns .nextBtn {
+  width: 152px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.btnsContainerWrapper .actionBtns .nextBtn {
+  background-color: #0071bc;
+  color: white;
+  font-weight: 700;
+}
+.btnsContainerWrapper .actionBtns .prevBtn {
+  color: #505050;
+  background-color: transparent !important;
+}
+.btnsContainerWrapper .actionBtns .prevBtn svg {
+  margin-right: 8.36px;
+  margin-top: 1px;
+}
+
+.btnsContainerWrapper .actionBtns .nextBtn svg {
+  transform: rotate(180deg);
+  margin-left: 8.36px;
+  margin-top: 1px;
+}
+
+@media screen and (max-width: 600px) {
+  .btnsContainerWrapper .actionBtns {
+    flex-direction: column-reverse;
+  }
+  .btnsContainerWrapper .actionBtns .prevBtn,
+  .btnsContainerWrapper .actionBtns .nextBtn {
+    width: 182px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

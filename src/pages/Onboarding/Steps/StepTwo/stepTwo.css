@@ -1,0 +1,116 @@
+.stepTwoContentContainer {
+  width: 100% !important;
+  min-height: 100% !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.lastTimeUsedInfoLabel {
+  width: 100%;
+  align-self: flex-start;
+  display: flex !important;
+  justify-content: space-between;
+}
+.errorField {
+  color: red;
+  font-weight: 400;
+}
+.lastTimeUsedInfo {
+  width: 442px;
+  height: auto !important;
+  min-height: 100% !important;
+  display: flex !important;
+  flex-direction: column;
+}
+.lastTimeUsedInfoInput {
+  width: 100%;
+  height: 56px;
+  background: #ffffff;
+  border: 1px solid rgba(80, 80, 80, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 10px 20px rgba(40, 59, 91, 0.05);
+  border-radius: 7px;
+  padding: 20px 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.lastTimeUsedInfoInputError {
+  border: 1px solid rgb(247 137 137 / 25%);
+  box-sizing: border-box;
+  box-shadow: 0px 3px 20px rgb(249 0 2 / 25%);
+}
+.innerDropdownContainer {
+  width: 4rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: -12px; /*removing the extra margin given to dropdown*/
+  padding: 0;
+}
+.lastTimeUsedInfoInput input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+.lastTimeUsedInfoInput input::-webkit-outer-spin-button,
+.lastTimeUsedInfoInput input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.stepTwoContentContainer
+  .lastTimeUsedInfo
+  .lastTimeUsedInfoInput
+  .innerDropdownContainer
+  .dropdown-header {
+  border: none !important;
+  box-shadow: none !important;
+  height: 50px !important;
+}
+@media screen and (max-width: 540px) {
+  .lastTimeUsedInfo {
+    width: 96% !important;
+    height: auto !important;
+    min-height: 100% !important;
+    display: flex !important;
+    flex-direction: column;
+  }
+  .lowerSection {
+    /* overflow-x: hidden !important; */
+  }
+}
+@media screen and (max-width: 460px) {
+  .lastTimeUsedInfo {
+    width: 345px !important;
+    height: auto !important;
+    min-height: 100% !important;
+    display: flex !important;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 411px) {
+  .lastTimeUsedInfo {
+    width: 330px !important;
+    /* left: 9.5% !important; */
+    /* top: 580px !important; */
+  }
+}
+
+@media screen and (max-width: 385px) {
+  .lastTimeUsedInfo {
+    width: 96.5% !important;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .lastTimeUsedInfo {
+    /* width: 310px !important; */
+  }
+}
+/* @media screen and (max-width: 320px) {
+  .lastTimeUsedInfo {
+    width: 310px !important;
+  }
+} */
