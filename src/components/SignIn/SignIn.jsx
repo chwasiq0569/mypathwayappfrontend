@@ -15,6 +15,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import validator from "validator";
+import { useHistory } from "react-router";
 
 const MainTheme = createMuiTheme({
   palette: {
@@ -28,6 +29,7 @@ const SignIn = ({ setSignInPage }) => {
   const [hidePassword, setHidePassword] = useState(true);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const history = useHistory();
 
   const handleHidePassword = () => {
     setHidePassword(!hidePassword);
@@ -95,7 +97,12 @@ const SignIn = ({ setSignInPage }) => {
           </div>
           <div container className="submitAndSignUp">
             <div className="leftSide">
-              <button className="submitBtnForm">Login</button>
+              <button
+                className="submitBtnForm"
+                onClick={() => history.replace("/onboarding")}
+              >
+                Login
+              </button>
             </div>
             <div className="rightSide">
               <p className="signUpText">

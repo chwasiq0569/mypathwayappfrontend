@@ -129,6 +129,7 @@
   transition: all 0.2s ease;
   font-weight: 600;
   font-size: 18px;
+  cursor: pointer;
 }
 .submitAndSignUp .leftSide .submitBtnForm:hover {
   box-shadow: 0px 8px 20px rgba(0, 82, 137, 0.3);

@@ -22,16 +22,17 @@ const StepTwo = () => {
   ];
 
   function addColon(e) {
+    console.log(e.target.value);
     if (e.target.value.length <= 5) {
       setTimeValue(e.target.value);
-    }
-    if (
-      !moment(e.target.value, "HH:mm", true).isValid() &&
-      e.target.value.length > 2
-    ) {
-      setError(true);
-    } else {
-      setError(false);
+      if (
+        !moment(e.target.value, "HH:mm", true).isValid() &&
+        e.target.value.length > 2
+      ) {
+        setError(true);
+      } else {
+        setError(false);
+      }
     }
   }
 

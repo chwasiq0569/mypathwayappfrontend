@@ -23,73 +23,39 @@ import { useMediaQuery } from "react-responsive";
 import StepTwoUpper from "./Steps/StepTwo/StepTwoUpper";
 import StepTwo from "./Steps/StepTwo/StepTwo";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import CheckImg from "../../assets/icons/check.svg";
 import InitialStepUpper from "./Steps/InitialStep/InitialStepUpper";
 import InitialStepLower from "./Steps/InitialStep/InitialStepLower";
+import { connectorStyles, stepIconStyle } from "./utils/stepperStyles";
 
-const ColorlibConnector = withStyles({
-  alternativeLabel: {},
-  active: {
-    "& $line": {
-      backgroundColor: "#0071BC",
-    },
-  },
-  completed: {
-    "& $line": {
-      backgroundColor: "#0071BC",
-    },
-  },
-  line: {
-    width: "cover",
-    height: 2,
-    border: 0,
-    backgroundColor: "#8798B4",
-    borderRadius: 1,
-    marginLeft: "-10px",
-    marginRight: "-10px",
-  },
-})(StepConnector);
+const list = [
+  "Alcohol",
+  "Cocaine",
+  "Heroin",
+  "Prescription Opioids",
+  "Prescription Stimulants",
+  "MDMA",
+  "Methamphetamine",
+  "Hallucinogens",
+  "Other",
+];
 
-const useColorlibStepIconStyles = makeStyles({
-  root: {
-    backgroundColor: "#fffff",
-    zIndex: 1,
-    width: "24px",
-    height: "24px",
-    borderRadius: "50%",
-    border: "2px solid #8798B4",
-  },
-  active: {
-    backgroundColor: "white",
-    border: "8px solid #0071BC",
-    width: "24px",
-    height: "24px",
-    boxShadow: "0px 4px 8px rgba(0, 84, 139, 0.2)",
-  },
-  completed: {
-    backgroundColor: "white",
-    border: "2px solid #0071BC",
-    // border: "none",
-    width: "24px",
-    height: "24px",
-    // backgroundImage: "url(https://i.ibb.co/xhndLB0/Group-3516.png)",
-    backgroundImage: `url(${CheckImg})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    // backgroundPosition: "center -4.15px",
-  },
-});
+const createList = (list) => {
+  return list.map((l) => {
+    return { status: false, content: l };
+  });
+};
+
+const ColorlibConnector = withStyles(connectorStyles)(StepConnector);
+const useColorlibStepIconStyles = makeStyles(stepIconStyle);
 
 function ColorlibStepIcon(props) {
   const classes = useColorlibStepIconStyles();
   const { active, completed } = props;
-
   const icons = {
     1: "",
     2: "",
     3: "",
   };
-
   return (
     <div
       className={clsx(classes.root, {
@@ -103,17 +69,8 @@ function ColorlibStepIcon(props) {
 }
 
 ColorlibStepIcon.propTypes = {
-  /**
-   * Whether this step is active.
-   */
   active: PropTypes.bool,
-  /**
-   * Mark the step as completed. Is passed to child components.
-   */
   completed: PropTypes.bool,
-  /**
-   * The label displayed in the step icon.
-   */
   icon: PropTypes.node,
 };
 
@@ -139,70 +96,57 @@ function getSteps() {
     "Create an ad on Step5",
   ];
 }
+
 const handleBack = (setActiveStep) => {
   setActiveStep((prevActiveStep) => prevActiveStep - 1);
 };
-function getStepContent(
-  step,
-  innerMobileBtnClickStatus,
-  setInnerMobileBtnClickStatus,
-  handleBack,
-  setActiveStep
-) {
-  switch (step) {
-    case 0:
-      return {
-        id: 0,
-        upper: <InitialStepUpper />,
-        lower: <InitialStepLower />,
-      };
-    case 1:
-      return { id: 1, upper: <StepOneUpper />, lower: <StepOne /> };
-    case 2:
-      return { id: 2, upper: <StepTwoUpper />, lower: <StepTwo /> };
-    case 3:
-      return {
-        id: 3,
-        upper: <StepThreeUpper />,
-        lower: (
-          <StepThree
-            innerMobileBtnClickStatus={innerMobileBtnClickStatus}
-            setInnerMobileBtnClickStatus={setInnerMobileBtnClickStatus}
-            handleBack={handleBack}
-            setActiveStep={setActiveStep}
-          />
-        ),
-      };
-    case 4:
-      return { id: 4, upper: <StepFourUpper />, lower: <StepFour /> };
-    default:
-      return "Unknown step";
-  }
-}
 
 export default function CustomizedSteppers() {
-  const [innerMobileBtnClickStatus, setInnerMobileBtnClickStatus] =
-    React.useState(false);
-  const isNotDesktop = useMediaQuery({ query: "(max-width: 750px)" });
-  const [stepThreeMounted, setStepThreeMounted] = React.useState(false);
-
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [itemsList, setItemsList] = React.useState(createList(list));
+
   const steps = getSteps();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   React.useEffect(() => {
     console.log(activeStep);
   }, [activeStep]);
 
-  console.log("activeStep", activeStep);
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return {
+          id: 0,
+          upper: <InitialStepUpper />,
+          lower: <InitialStepLower />,
+        };
+      case 1:
+        return { id: 1, upper: <StepOneUpper />, lower: <StepOne /> };
+      case 2:
+        return { id: 2, upper: <StepTwoUpper />, lower: <StepTwo /> };
+      case 3:
+        return {
+          id: 3,
+          upper: <StepThreeUpper />,
+          lower: (
+            <StepThree itemsList={itemsList} setItemsList={setItemsList} />
+          ),
+        };
+      case 4:
+        return {
+          id: 4,
+          upper: <StepFourUpper />,
+          lower: <StepFour itemsList={itemsList} />,
+        };
+      default:
+        return "Unknown step";
+    }
+  }
+
   return (
     <div className={classes.root}>
       <div className={"stepContainer"}>
@@ -213,13 +157,7 @@ export default function CustomizedSteppers() {
               <FinishStepUpper />
             </div>
           ) : (
-            getStepContent(
-              activeStep,
-              innerMobileBtnClickStatus,
-              setInnerMobileBtnClickStatus,
-              handleBack,
-              setActiveStep
-            ).upper
+            getStepContent(activeStep).upper
           )}
           <Stepper
             style={{ background: "none" }}
@@ -240,15 +178,7 @@ export default function CustomizedSteppers() {
             </div>
           ) : (
             <>
-              {
-                getStepContent(
-                  activeStep,
-                  innerMobileBtnClickStatus,
-                  setInnerMobileBtnClickStatus,
-                  handleBack,
-                  setActiveStep
-                ).lower
-              }
+              {getStepContent(activeStep).lower}
               <div className="btnsContainerWrapper">
                 <div className="actionBtns">
                   <button
@@ -293,10 +223,8 @@ export default function CustomizedSteppers() {
                   </div>
                 </div>
               </div>
-              {/* </div> */}
             </>
           )}
-          {/* </div> */}
         </div>
       </div>
     </div>

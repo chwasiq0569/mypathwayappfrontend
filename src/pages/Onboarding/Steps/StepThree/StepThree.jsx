@@ -1,42 +1,9 @@
 import React, { useState } from "react";
 import "./stepthree.css";
-import StepThreeMobile from "./StepThreeMobile";
 import Dropdown from "./util/Dropdown";
-import PrevNextBtns from "./util/PrevNextBtns";
-import { useMediaQuery } from "react-responsive";
-import moment from "moment";
+import TimeInputField from "./util/TimeInputField";
 
-const list = [
-  "Alcohol",
-  "Cocaine",
-  "Heroin",
-  "Prescription Opioids",
-  "Prescription Stimulants",
-  "MDMA",
-  "Methamphetamine",
-  "Hallucinogens",
-  "Other",
-];
-
-const createList = (list) => {
-  return list.map((l) => {
-    return { status: false, content: l };
-  });
-};
-
-const StepThree = ({
-  innerMobileBtnClickStatus,
-  setInnerMobileBtnClickStatus,
-  handleBack,
-  setActiveStep,
-}) => {
-  const [itemsList, setItemsList] = React.useState(createList(list));
-  const [timeValue, setTimeValue] = React.useState("");
-  const [error, setError] = React.useState(false);
-
-  const isNotDesktop = useMediaQuery({ query: "(max-width: 750px)" });
-  const [stepThreeMobileBtnStatus, setStepThreeMobileBtnStatus] =
-    React.useState(false);
+const StepThree = ({ itemsList, setItemsList }) => {
   const selectItem = (selectedItem) => {
     let updatedList = itemsList.map((item) => {
       if (item.content === selectedItem.content) {
@@ -65,41 +32,8 @@ const StepThree = ({
     { id: 5, label: "5" },
   ];
 
-  function validateHhMm(inputField) {
-    var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(
-      inputField.value
-    );
-    if (isValid) {
-      console.log("Valid Time");
-    } else {
-      console.log("Invalid Time");
-    }
-    // return isValid;
-  }
-
-  let timeout = null;
-
-  const validateTime = (e) => {
-    setTimeValue(e.target.value);
-
-    clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      if (
-        !moment(e.target.value, "HH:mm:ss", true).isValid() &&
-        e.target.value.length > 2
-      ) {
-        setError(true);
-      } else {
-        setError(false);
-      }
-    }, 2000);
-  };
-
   return (
     <div className="lowerSection">
-      {/* <StepThreeMobile
-        setInnerMobileBtnClickStatus={setInnerMobileBtnClickStatus}
-      /> */}
       <div className="stepThreeGridContainer">
         {itemsList.map((item) => (
           <div key={item.content} className="row row1">
@@ -133,30 +67,7 @@ const StepThree = ({
                 />
               </div>
               <div className="col col4">
-                <div
-                  className={
-                    item.status
-                      ? error
-                        ? "avgTimeinputFieldError avgTimeinputField"
-                        : "avgTimeinputField"
-                      : "avgTimeinputField unSelectedItem unClickable"
-                  }
-                >
-                  {error ? (
-                    <label className="errorLabel">
-                      Enter Time in HH:MM:SS format
-                    </label>
-                  ) : (
-                    <label className="avgTimeLabel">Avg Time Spent</label>
-                  )}
-                  <input
-                    onChange={validateTime}
-                    value={timeValue}
-                    type="text"
-                    className="stepThreeInput"
-                    placeholder="HH:MM:SS"
-                  />
-                </div>
+                <TimeInputField item={item} />
               </div>
             </div>
           </div>
