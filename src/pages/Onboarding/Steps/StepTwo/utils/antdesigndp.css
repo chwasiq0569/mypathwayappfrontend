@@ -62,12 +62,13 @@
 }
 .ant-picker-header-next-btn::before {
   margin-top: -1rem;
-  content: url(../../../../../assets/icons/Vector.png);
+  content: url("https://i.ibb.co/XDBL0MB/Vector.png");
+  /* content: url("../../../../../assets/icons/Vector.png"); */
   transform: rotate(180deg);
 }
 .ant-picker-header-prev-btn::before {
   margin-bottom: -0.75rem;
-  content: url(../../../../../assets/icons/Vector.png);
+  content: url("https://i.ibb.co/XDBL0MB/Vector.png");
   transform: rotate(0deg);
   margin-left: 1.55rem;
 }
